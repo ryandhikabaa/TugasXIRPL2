@@ -19,7 +19,9 @@
 
     <Button
         android:id="@+id/btn_tgs_login"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:textColor="#fff"
@@ -28,11 +30,24 @@
 
     <Button
         android:id="@+id/btn_tgs_tabViewPager"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:textColor="#fff"
         android:background="@drawable/edit_round"
         android:text="Tab Layout ViewPAger" />
+
+    <Button
+        android:id="@+id/btn_tgs_tabViewPager2"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_round"
+        android:text="Kalkulator Spiner"
+        android:textColor="#fff" />
 
 </LinearLayout>

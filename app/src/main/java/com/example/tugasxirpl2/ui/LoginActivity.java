@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tugasxirpl2.R;
+import com.example.tugasxirpl2.model.UserModel;
 
 import java.text.SimpleDateFormat;
 
@@ -26,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        final UserModel user = new UserModel();
 
         tdate = (TextView) findViewById(R.id.date);
         ttime = (TextView) findViewById(R.id.time);
@@ -77,17 +80,20 @@ public class LoginActivity extends AppCompatActivity {
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text_email = etemail.getText().toString();
-                text_pw = etpassword.getText().toString();
-                if (text_email.length()==0) {
+                user.setEmail(etemail.getText().toString());
+                user.setPassword(etpassword.getText().toString());
+//
+//                text_email = etemail.getText().toString();
+//                text_pw = ;
+                if (user.getEmail().length()==0) {
                     etemail.setError("Enter email");
-                } else if (text_pw.length()==0) {
+                } else if (user.getPassword().length()==0) {
                     etpassword.setError("Enter password");
                 }else {
                     SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("email", etemail.getText().toString());
-                    editor.putString("pw", etpassword.getText().toString());
+                    editor.putString("email", user.getEmail());
+                    editor.putString("pw", user.getPassword());
                     editor.commit();
                     Intent intent = new Intent(LoginActivity.this, TugasXIRPL2Activity.class);
                     startActivity(intent);

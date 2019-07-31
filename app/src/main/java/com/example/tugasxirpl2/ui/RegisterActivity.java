@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tugasxirpl2.R;
+import com.example.tugasxirpl2.model.UserModel;
 
 import java.text.SimpleDateFormat;
 
@@ -27,6 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        final UserModel user = new UserModel();
 
         tdate = (TextView) findViewById(R.id.date);
         ttime = (TextView) findViewById(R.id.time);
@@ -81,21 +84,24 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                text_email = email.getText().toString();
-                text_pw = pw.getText().toString();
-                text_username = username.getText().toString();
-                if (text_email.length()==0) {
+                user.setEmail(email.getText().toString());
+                user.setPassword(pw.getText().toString());
+                user.setUsername(username.getText().toString());
+//                text_email = email.getText().toString();
+//                text_pw = pw.getText().toString();
+//                text_username = username.getText().toString();
+                if (user.getEmail().length()==0) {
                     email.setError("Enter email");
-                } else if (text_pw.length()==0) {
+                } else if (user.getPassword().length()==0) {
                     pw.setError("Enter password");
-                }else if (text_username.length()==0){
+                }else if (user.getUsername().length()==0){
                     username.setError("Enter username");
                 }else {
                     SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", username.getText().toString());
-                    editor.putString("email", email.getText().toString());
-                    editor.putString("pw", pw.getText().toString());
+                    editor.putString("email", user.getEmail());
+                    editor.putString("pw", user.getPassword());
+                    editor.putString("username", user.getUsername());
                     editor.commit();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
