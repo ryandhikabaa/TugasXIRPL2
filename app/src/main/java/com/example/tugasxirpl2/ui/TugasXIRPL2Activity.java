@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.example.tugasxirpl2.R;
 
 public class TugasXIRPL2Activity extends AppCompatActivity {
-    Button tgs_login, tgs_tabViewPager;
+    Button tgs_login, tgs_tabViewPager, tgs_kalku;
     private static final int TIME_LIMIT = 1500;
     private static long backPressed;
 
@@ -19,6 +19,7 @@ public class TugasXIRPL2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tugas_xirpl2);
         tgs_login = (Button) findViewById(R.id.btn_tgs_login);
+        tgs_kalku = (Button) findViewById(R.id.btn_tgs_kalku);
         tgs_tabViewPager = (Button) findViewById(R.id.btn_tgs_tabViewPager);
 
         tgs_login.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +34,14 @@ public class TugasXIRPL2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TugasXIRPL2Activity.this, TabViewPager.class);
+                startActivity(intent);
+            }
+        });
+
+        tgs_kalku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TugasXIRPL2Activity.this, KalkulatorActivity.class);
                 startActivity(intent);
             }
         });

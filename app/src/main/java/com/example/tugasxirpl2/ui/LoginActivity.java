@@ -82,9 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 user.setEmail(etemail.getText().toString());
                 user.setPassword(etpassword.getText().toString());
-//
-//                text_email = etemail.getText().toString();
-//                text_pw = ;
+
                 if (user.getEmail().length()==0) {
                     etemail.setError("Enter email");
                 } else if (user.getPassword().length()==0) {
