@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tugasxirpl2.Kalkulator.KalkulatorCasio;
 import com.example.tugasxirpl2.R;
 
 public class KalkulatorActivity extends AppCompatActivity{
@@ -43,36 +44,42 @@ public class KalkulatorActivity extends AppCompatActivity{
         spoperator.setAdapter(adapter);
         spoperator.getSelectedItemPosition();
 
+        final KalkulatorCasio kc = new KalkulatorCasio();
         btnhitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String angka1 = txtangka1.getText().toString().trim();
-                String angka2 = txtangka2.getText().toString().trim();
-                if(TextUtils.isEmpty(angka1) && TextUtils.isEmpty(angka2)){
+                String angkaku1 = txtangka1.getText().toString().trim();
+                String angkaku2 = txtangka2.getText().toString().trim();
+                int angka1 = Integer.parseInt(txtangka1.getText().toString());
+                int angka2 = Integer.parseInt(txtangka1.getText().toString());
+
+                if(TextUtils.isEmpty(angkaku1) && TextUtils.isEmpty(angkaku2)){
                     txtangka1.setError("Angka kosong");
                     txtangka2.setError("Angka kosong");
-                }else if(TextUtils.isEmpty(angka1)){
+                }else if(TextUtils.isEmpty(angkaku1)){
                     txtangka1.setError("Angka kosong");
-                }else if(TextUtils.isEmpty(angka2)){
+                }else if(TextUtils.isEmpty(angkaku2)){
                     txtangka2.setError("Angka kosong");
                 }else{
                     int pilihan = spoperator.getSelectedItemPosition();
                     switch (pilihan) {
                         case 0:
-                            int tambah = Integer.parseInt(angka1) + Integer.parseInt(angka2);
-                            txthasil.setText(String.valueOf(tambah));
+                            int hasiltambah = kc.penjumlahan(angka1,angka2);
+                            txthasil.setText(String.valueOf(hasiltambah));
                             break;
                         case 1:
-                            int kurang = Integer.parseInt(angka1) - Integer.parseInt(angka2);
-                            txthasil.setText(String.valueOf(kurang));
+                            int hasilkurang = kc.pengurangan(angka1,angka2);
+                            txthasil.setText(String.valueOf(hasilkurang));
                             break;
                         case 2:
-                            int kali = Integer.parseInt(angka1) * Integer.parseInt(angka2);
-                            txthasil.setText(String.valueOf(kali));
+                            int hasilkali = kc.perkalian(angka1,angka2);
+                            txthasil.setText(String.valueOf(hasilkali));
                             break;
                         case 3:
-                            float bagi = Float.parseFloat(angka1) / Float.parseFloat(angka2);
-                            txthasil.setText(String.valueOf(bagi));
+                            double angka1double = Double.parseDouble(txtangka1.getText().toString());
+                            double angka2double = Double.parseDouble(txtangka2.getText().toString());
+                            double hasilbagi = kc.pembagian(angka1double,angka2double);
+                            txthasil.setText(String.valueOf(hasilbagi));
                             break;
                     }
                 }
